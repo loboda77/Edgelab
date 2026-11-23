@@ -1,5 +1,5 @@
 // EdgeLab offline cache: app shell cache-first, data network-first (falls back to the last copy offline)
-const V = "edgelab-v1";
+const V = "edgelab-v2";
 const SHELL = ["./", "index.html", "logos.webp", "logos.json", "manifest.webmanifest", "icons/icon-192.png", "icons/apple-touch-icon.png"];
 self.addEventListener("install", e => { e.waitUntil(caches.open(V).then(c => c.addAll(SHELL))); self.skipWaiting(); });
 self.addEventListener("activate", e => { e.waitUntil(caches.keys().then(k => Promise.all(k.filter(x => x !== V).map(x => caches.delete(x))))); self.clients.claim(); });
